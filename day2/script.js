@@ -96,5 +96,6 @@ fetch('./input.txt').then(r => r.text()).then(
         });
         console.log("score:"+score);
         console.log("scorepart2:"+scorepart2);
+        document.body.innerHTML += score + "<br>" + scorepart2;
     }
 )
