@@ -9,5 +9,5 @@ day 2 answers:
 10274
 
 day 3 answers:
-???
-???
+8085
+2515
