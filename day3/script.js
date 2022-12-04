@@ -1,6 +1,6 @@
 fetch('./input.txt').then(r => r.text()).then(
     (d) => {
-        d = d.split(/\n/g); //test
+        d = d.split(/\n/g);
         scorepart1 = 0;  
         scorepart2 = 0; 
         //part 1   
