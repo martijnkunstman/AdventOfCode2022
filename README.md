@@ -7,3 +7,7 @@ day 1 answers:
 day 2 answers:
 14375
 10274
+
+day 3 answers:
+???
+???
