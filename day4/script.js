@@ -3,7 +3,7 @@ fetch('./input.txt').then(r => r.text()).then(
         d = d.split("\n");
         let scorepart1 = 0, scorepart2 = 0;
         d.map(
-            (s, i) => {
+            (s) => {
                 let array = s.split(",");
                 let a1start = Number(array[0].split("-")[0]);
                 let a1end = Number(array[0].split("-")[1]);
