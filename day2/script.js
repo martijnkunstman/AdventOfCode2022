@@ -1,3 +1,22 @@
+/*
+
+A = X = 0
+B = Y = 1
+C = Z = 2
+
+part1
+A B C
+3 7 2 X
+0 4 8 Y
+6 1 5 Z
+
+part2
+A B C
+2 0 1 X
+0 1 2 Y
+1 2 0 Z
+
+*/
 fetch('./input.txt').then(r => r.text()).then(
     (d) => {
         d = d.split(/\n/g).map(x => x = x.split(" "));
@@ -10,8 +29,8 @@ fetch('./input.txt').then(r => r.text()).then(
             t2 += ((a + b + 2) % 3) + 1 + c;
         }
         );
-        console.log("scorepart1:" + t1);
-        console.log("scorepart2:" + t2);
+        console.log("part1:" + t1);
+        console.log("part2:" + t2);
         document.body.innerHTML += t1 + "<br>" + t2;
     }
 )
