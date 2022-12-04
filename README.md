@@ -11,3 +11,7 @@ day 2 answers:
 day 3 answers:
 8085
 2515
+
+day 4 answers:
+477
+830
