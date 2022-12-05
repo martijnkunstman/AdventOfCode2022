@@ -23,7 +23,7 @@ let data = ["DZTH", "SCGTWRQ", "HCRNQFBP", "ZHFNCL", "SQFLG", "SCRBZWPV", "JFZ",
 let dataCopy = [...data];
 let instructions = [];
 fetch('./input.txt').then(r => r.text()).then(
-    (d) => {
+    d => {
         d = d.split("move");
         d.map(
             (item, index) => {
