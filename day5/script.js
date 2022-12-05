@@ -22,34 +22,38 @@
 let data = ["DZTH", "SCGTWRQ", "HCRNQFBP", "ZHFNCL", "SQFLG", "SCRBZWPV", "JFZ", "QHRZVLD", "DLZFNGHB"];
 let dataCopy = [...data];
 let instructions = [];
+let result1 = "";
+let result2 = "";
+
 fetch('./input.txt').then(r => r.text()).then(
     d => {
         d = d.split("move");
         d.map(
             (item, index) => {
                 if (index > 0) {
-                    instructions.push([Number(item.split(" ")[1]), Number(item.split(" ")[3]), Number(item.split(" ")[5])])
+                    instructions.push([Number(item.split(" ")[1]), Number(item.split(" ")[3])-1, Number(item.split(" ")[5])-1])
                 }
             }
         )
         instructions.map(
             item => {
                 for (let i = 0; i < item[0]; i++) {
-                    data[item[2]-1] = data[item[1]-1][0] + data[item[2]-1];
-                    data[item[1]-1] = data[item[1]-1].slice(1);
+                    data[item[2]] = data[item[1]][0] + data[item[2]];
+                    data[item[1]] = data[item[1]].slice(1);
                 }                
             }
         )
+        
         instructions.map(
             item => {
-                    dataCopy[item[2]-1] = dataCopy[item[1]-1].slice(0, item[0]) + dataCopy[item[2]-1];
-                    dataCopy[item[1]-1] = dataCopy[item[1]-1].slice(item[0]);
+                    dataCopy[item[2]] = dataCopy[item[1]].slice(0, item[0]) + dataCopy[item[2]];
+                    dataCopy[item[1]] = dataCopy[item[1]].slice(item[0]);
            }
         )
-        let result1 = "";
-        let result2 = "";
+
         data.map(item => result1 += item[0]);
         dataCopy.map(item => result2 += item[0]);
+
         console.log(result1+" - "+result2);
         document.body.innerHTML += result1 + "<br>" + result2;
     }
