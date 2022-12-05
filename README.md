@@ -15,3 +15,7 @@ day 3 answers:
 day 4 answers:
 477
 830
+
+day 5 answers:
+RFFFWBPNS
+CQQBBJFCS
