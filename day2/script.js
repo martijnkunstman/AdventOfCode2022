@@ -30,14 +30,13 @@ let l2n = (letter, extra = 0) => {
 }
 fetch('./input.txt').then(r => r.text()).then(
     d => {
-        let t1 = 0, t2 = 0;
-        d = d.split(/\n/g).map(x => x = x.split(" "));
+        let t1 = 0, t2 = 0
+        d = d.split(/\n/g).map(x => x = x.split(" "))
         d.map(x => {
-            t1 += (l2n(x[1],23) * 4 + (4 - l2n(x[0])) * 3) % 9 + 1;
-            t2 += (l2n(x[0]) + l2n(x[1],23) + 2) % 3 + l2n(x[1],23)*3 +1;
-        }
-        );
-        console.log("part1:" + t1 + " part2:" + t2);
-        document.body.innerHTML += t1 + "<br>" + t2;
+            t1 += (l2n(x[1], 23) * 4 + (4 - l2n(x[0])) * 3) % 9 + 1
+            t2 += (l2n(x[0]) + l2n(x[1], 23) + 2) % 3 + l2n(x[1], 23) * 3 + 1
+        })
+        console.log("part1:" + t1 + " part2:" + t2)
+        document.body.innerHTML += t1 + "<br>" + t2
     }
 )
