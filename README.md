@@ -19,3 +19,7 @@ day 4 answers:
 day 5 answers:
 RFFFWBPNS
 CQQBBJFCS
+
+day 6 answers:
+1042
+2980
