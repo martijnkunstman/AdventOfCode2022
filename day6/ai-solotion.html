@@ -14,51 +14,63 @@
 <body>
   <a href="https://beta.openai.com/codex-javascript-sandbox">https://beta.openai.com/codex-javascript-sandbox</a>
   <hr>
-  Instruction:<br>Find the first occurrence index where a combination of 4 letters are unique starting from the begining
-  in the following string "nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg" and add 4 then show it on the page.
+  Instruction:<br>Find first index where combination of 4 letters are unique in "nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg". Add
+  4 and show.
   <br>
   <br>
-  Answer of AI version (based on instruction of <b>198</b> characters):
+  Answer of AI version (based on instruction of <b>114</b> characters):
   <br>
   <script>
     //https://beta.openai.com/codex-javascript-sandbox
 
-    /* Find the first occurrence index where a combination of 4 letters are unique starting from the begining in the following string "nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg" and add 4 then show it on the page. */
+    /* Find first index where combination of 4 letters are unique in "nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg". Add 4 and show. */
     var str = "nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg";
     var index = 0;
-    var unique = true;
-    while (index < str.length - 3) {
+    var found = false;
+    while (!found) {
       var sub = str.substring(index, index + 4);
-      for (var i = 0; i < sub.length; i++) {
-        for (var j = i + 1; j < sub.length; j++) {
-          if (sub[i] == sub[j]) {
-            unique = false;
+      if (sub.length == 4) {
+        var unique = true;
+        for (var i = 0; i < sub.length; i++) {
+          for (var j = i + 1; j < sub.length; j++) {
+            if (sub[i] == sub[j]) {
+              unique = false;
+              break;
+            }
+          }
+          if (!unique) {
             break;
           }
         }
-        if (!unique) {
-          break;
+        if (unique) {
+          found = true;
         }
       }
-      if (unique) {
-        break;
+      if (!found) {
+        index++;
       }
-      index++;
-      unique = true;
     }
     var result = document.createElement('div');
     result.innerHTML = index + 4;
     document.body.appendChild(result);
 
-    document.body.innerHTML += "<hr>Instruction:<br>function a(){return\"nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg\".substring(b-c,b).split(\"\").filter(function(d,e,f){return f.indexOf(d)==e}).join(\"\")}for(var g=document.body,h=document.body.innerHTML,b=4,c=b;a().length!=c;)b++;g.innerHTML=h+b; ";
+    document.body.innerHTML +=
+      "<hr>Instruction:<br>function a(){return\"nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg\".substring(b-c,b).split(\"\").filter(function(d,e,f){return f.indexOf(d)==e}).join(\"\")}for(var g=document.body,h=document.body.innerHTML,b=4,c=b;a().length!=c;)b++;g.innerHTML=h+b; ";
 
-    document.body.innerHTML += "<br><br>Answer of my code compiled by <a href='https://developers.google.com/closure/compiler'>Closure Compiler</a> (based on instruction of <b>232</b> characters):<br>";
+    document.body.innerHTML +=
+      "<br><br>Answer of my code compiled by <a href='https://developers.google.com/closure/compiler'>Closure Compiler</a> (based on instruction of <b>232</b> characters):<br>";
 
     //my solution after closure compiler
-    function a(){return"nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg".substring(b-c,b).split("").filter(function(d,e,f){return f.indexOf(d)==e}).join("")}for(var g=document.body,h=document.body.innerHTML,b=4,c=b;a().length!=c;)b++;g.innerHTML=h+b;
-  
-    document.body.innerHTML += "<hr>198 vs 232 character instruction<br><br>Observation:<br>Instruction in natural language is shorter than the actual code to produce the same result."
+    function a() {
+      return "nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg".substring(b - c, b).split("").filter(function (d, e, f) {
+        return f.indexOf(d) == e
+      }).join("")
+    }
+    for (var g = document.body, h = document.body.innerHTML, b = 4, c = b; a().length != c;) b++;
+    g.innerHTML = h + b;
 
+    document.body.innerHTML +=
+      "<hr><b>114</b> vs <b>232</b> character instruction<br><br>Observation:<br>Instruction in natural language is shorter (less than half!) than the actual code to produce the same result."
   </script>
 </body>
 
