@@ -23,3 +23,7 @@ CQQBBJFCS
 day 6 answers:
 1042
 2980
+
+day 7 answers:
+1543140
+1117448
