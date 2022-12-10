@@ -2,9 +2,12 @@
 
 let moves = [];
 let result1 = 0;
+let result2 = 0;
 let positionH = [0, 0];
 let positionT = [0, 0];
 let result1array = [];
+let result2array = [];
+let result2arrayHistory = [];
 
 
 fetch('./input.txt').then(r => r.text()).then(
@@ -12,15 +15,60 @@ fetch('./input.txt').then(r => r.text()).then(
         s.split('\r\n').map(i => {
             moves.push(i.split(" "));
         });
+        //
         moves.map(i => {
             move(i[0], i[1]);
         });
-        console.log(result1array);
         result1 = [...new Set(result1array)].length;
         console.log(result1);
+        //
+
+        
+        result2 = [...new Set(result2array)].length;
+        console.log(result2);
     }
 )
 
+function positionNew(positionIn,positionOut)
+{
+    if ((positionOut[0] + 1 < positionIn[0])) {
+        positionOut[0]++;
+        if ((positionOut[1] < positionIn[1])) {
+            positionOut[1]++;
+        }
+        if ((positionOut[1] > positionIn[1])) {
+            positionOut[1]--;
+        }
+    }
+    if ((positionOut[0] - 1 > positionIn[0])) {
+        positionOut[0]--;
+        if ((positionOut[1] < positionIn[1])) {
+            positionOut[1]++;
+        }
+        if ((positionOut[1] > positionIn[1])) {
+            positionOut[1]--;
+        }
+    }
+    if ((positionOut[1] + 1 < positionIn[1])) {
+        positionOut[1]++;
+        if ((positionOut[0] < positionIn[0])) {
+            positionOut[0]++;
+        }
+        if ((positionOut[0] > positionIn[0])) {
+            positionOut[0]--;
+        }
+    }
+    if ((positionOut[1] - 1 > positionIn[1])) {
+        positionOut[1]--;
+        if ((positionOut[0] < positionIn[0])) {
+            positionOut[0]++;
+        }
+        if ((positionOut[0] > positionIn[0])) {
+            positionOut[0]--;
+        }
+    }
+    return positionOut;
+}
 
 function move(d, i) {
     for (j = 0; j < i; j++) {
@@ -38,42 +86,7 @@ function move(d, i) {
                 positionH[1]--
                 break;
         }
-        if ((positionT[0] + 1 < positionH[0])) {
-            positionT[0]++;
-            if ((positionT[1] < positionH[1])) {
-                positionT[1]++;
-            }
-            if ((positionT[1] > positionH[1])) {
-                positionT[1]--;
-            }
-        }
-        if ((positionT[0] - 1 > positionH[0])) {
-            positionT[0]--;
-            if ((positionT[1] < positionH[1])) {
-                positionT[1]++;
-            }
-            if ((positionT[1] > positionH[1])) {
-                positionT[1]--;
-            }
-        }
-        if ((positionT[1] + 1 < positionH[1])) {
-            positionT[1]++;
-            if ((positionT[0] < positionH[0])) {
-                positionT[0]++;
-            }
-            if ((positionT[0] > positionH[0])) {
-                positionT[0]--;
-            }
-        }
-        if ((positionT[1] - 1 > positionH[1])) {
-            positionT[1]--;
-            if ((positionT[0] < positionH[0])) {
-                positionT[0]++;
-            }
-            if ((positionT[0] > positionH[0])) {
-                positionT[0]--;
-            }
-        }
+        positionT = positionNew(positionH,positionT);
         result1array.push(positionT[0] + "-" + positionT[1]);
     }
 }
