@@ -195,73 +195,81 @@
     var y = node.y;
     var grid = this.grid;
 
-    var valueNow = grid[x][y];
+    var valueNow = grid[x][y].weight;
 
-    
     // West
-    if (grid[x - 1] && (grid[x - 1][y]<=(valueNow+10))) {
+    if ((grid[x - 1]) && (grid[x - 1][y]) && (grid[x - 1][y].weight<=valueNow+1)) {
       ret.push(grid[x - 1][y]);
     }
-  
+
     // East
-    if (grid[x + 1] && (grid[x + 1][y]>=(valueNow+10))) {
+    if ((grid[x + 1]) && (grid[x + 1][y]) && (grid[x + 1][y].weight<=valueNow+1)) {
       ret.push(grid[x + 1][y]);
     }
-  
+
     // South
-    if (grid[x] && (grid[x][y - 1]<=valueNow)) {
+    if ((grid[x]) && (grid[x][y - 1]) && (grid[x][y - 1].weight<=valueNow+1 )) {
       ret.push(grid[x][y - 1]);
     }
-  
+
     // North
-    if (grid[x] && (grid[x][y + 1]<=valueNow)) {
+    if ((grid[x]) && (grid[x][y + 1]) && (grid[x][y + 1].weight<=valueNow+1)) {
       ret.push(grid[x][y + 1]);
     }
-    
-    
 
+
+    /*
+    
     // West
-    //if (grid[x - 1] && grid[x - 1][y]) {
-    //  ret.push(grid[x - 1][y]);
-    //}
+        if (grid[x - 1] && grid[x - 1][y]) {
+          ret.push(grid[x - 1][y]);
+        }
+    
+        // East
+        if (grid[x + 1] && grid[x + 1][y]) {
+          ret.push(grid[x + 1][y]);
+        }
+    
+        // South
+        if (grid[x] && grid[x][y - 1]) {
+          ret.push(grid[x][y - 1]);
+        }
+    
+        // North
+        if (grid[x] && grid[x][y + 1]) {
+          ret.push(grid[x][y + 1]);
+        }
 
-    // East
-    //if (grid[x + 1] && grid[x + 1][y]) {
-    //  ret.push(grid[x + 1][y]);
-    //}
-
-    // South
-    if (grid[x] && grid[x][y - 1]) {
-      ret.push(grid[x][y - 1]);
-    }
-
-    // North
-    if (grid[x] && grid[x][y + 1]) {
-      ret.push(grid[x][y + 1]);
-    }
+        */
 
 
-    if (this.diagonal) {
-      // Southwest
-      if (grid[x - 1] && grid[x - 1][y - 1]) {
-        ret.push(grid[x - 1][y - 1]);
-      }
 
-      // Southeast
-      if (grid[x + 1] && grid[x + 1][y - 1]) {
-        ret.push(grid[x + 1][y - 1]);
-      }
 
-      // Northwest
-      if (grid[x - 1] && grid[x - 1][y + 1]) {
-        ret.push(grid[x - 1][y + 1]);
-      }
+    /*
+        if (this.diagonal) {
+          // Southwest
+          if (grid[x - 1] && grid[x - 1][y - 1]) {
+            ret.push(grid[x - 1][y - 1]);
+          }
+    
+          // Southeast
+          if (grid[x + 1] && grid[x + 1][y - 1]) {
+            ret.push(grid[x + 1][y - 1]);
+          }
+    
+          // Northwest
+          if (grid[x - 1] && grid[x - 1][y + 1]) {
+            ret.push(grid[x - 1][y + 1]);
+          }
+    
+          // Northeast
+          if (grid[x + 1] && grid[x + 1][y + 1]) {
+            ret.push(grid[x + 1][y + 1]);
+          }
+        }
+        */
 
-      // Northeast
-      if (grid[x + 1] && grid[x + 1][y + 1]) {
-        ret.push(grid[x + 1][y + 1]);
-      }
-    }
+
 
     return ret;
   };
