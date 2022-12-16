@@ -1,5 +1,5 @@
 let result1 = 0;
-let result2 = 1000000;
+let result2 = 0;
 let result;
 let startPoint;
 let endPoint;
@@ -36,7 +36,6 @@ fetch('./input.txt').then(r => r.text()).then(
         console.log("part 1");
         var graph = new Graph(heightMap);
         var start = graph.grid[startPoint[0]][startPoint[1]];
-        //console.log("start", start); 
         var end = graph.grid[endPoint[0]][endPoint[1]];
         result = astar.search(graph, start, end);
         showResult();
@@ -47,16 +46,22 @@ fetch('./input.txt').then(r => r.text()).then(
         for (let i = 0; i < heightMap.length; i++) {
             for (let j = 0; j < heightMap[i].length; j++) {
                 if (heightMap[i][j] == 0) {
-                    console.log("found:" +i +"-" + j );
+                    //console.log("found:" +i +"-" + j );
                     var start = graph.grid[i][j];
+                    console.log();
                     result = astar.search(graph, start, end);
-                    console.log(result.length);
+                    console.log("result:" + result.length);
+                    if ((result.length < result2) && (result.length)) {
+                        result2 = result.length;
+                        tempresult = result;
+                    }
                 }
             }
         }
-        
+        showResult2();
     }
 )
+let tempresult;
 
 
 
@@ -70,8 +75,17 @@ function showHeightMap() {
             newDiv.className = "pixel";
             newDiv.id = "pixel_" + i + "_" + j;
             //newDiv.style.backgroundColor = "rgba("+(255*heightMap[i][j] / 26)+",255,255,1)";
+            if(heightMap[i][j]==0)
+            {
+                newDiv.style.backgroundColor = "rgba(0,255,0,1)";
+                newDiv.style.opacity = 1;
+            } 
+            else
+            {
             newDiv.style.backgroundColor = "rgba(" + (255 * heightMap[i][j] / 26) + ",0,0,1)";
-            newDiv.style.opacity = heightMap[i][j] / 26;
+            newDiv.style.opacity = heightMap[i][j] / 26;    
+        }
+            
             container.appendChild(newDiv);
         }
         const newDiv = document.createElement("br");
@@ -85,12 +99,16 @@ function showResult() {
         document.getElementById("pixel_" + result[i].x + "_" + result[i].y).style.opacity = 1;
     }
     console.log("result1:" + result.length);
-    //result1 = 437
+    result1 = result.length;
+    result2 = result1;
 }
 
 function showResult2() {
+    for (let i = 0; i < tempresult.length; i++) {
+        document.getElementById("pixel_" + tempresult[i].x + "_" + tempresult[i].y).style.backgroundColor = "blue";
+        document.getElementById("pixel_" + tempresult[i].x + "_" + tempresult[i].y).style.opacity = 1;
+    }
     console.log("result2:" + result2);
-    //result1 = 437
 }
 
 
