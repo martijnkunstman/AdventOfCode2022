@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Advent of Code 2022 - day 22</title>
+  <style>
+    html,body{
+      width:100%;
+      height:100%;
+      margin:0;
+      padding:0;
+    }
+    #container{
+      display:flex;
+      flex-direction: column;
+    }
+    .cell{
+      width:8px;
+      height:8px;
+      border:1px solid rgba(0,0,0,0.2); 
+      display:inline-block;  
+      box-sizing: border-box  
+    }
+    .row{
+      height:8px;
+    }
+    .current{
+      background-color:red !important;
+      border:4px solid red !important;
+    }
+    .visited{
+      background-color:orange !important;
+      background-color:orange;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+  <script  src="./script.js"></script>
+</body>
+</html>
