@@ -14,31 +14,23 @@ fetch('./input.txt').then(r => r.text()).then(
         path = path.split("-");
         fillData();
         drawMap();
-        getPosition();        
+        getStartPosition();
         walkMap();
-        console.log("result:"+(1000 * (position.y+1) + 4 * (position.x + 1) + direction));
+        console.log("result:" + (1000 * (position.y + 1) + 4 * (position.x + 1) + direction));
     }
 )
 
-function fillData()
-{
+function fillData() {
     let dataXlength = 0;
-    for (a=0;a<data.length;a++)
-    {
-        if (dataXlength<data[a].length)
-        {
-            dataXlength = data[a].length;
-        }
-    }
-    for (a = 0; a < data.length; a++)
-    {
-        while (data[a].length < dataXlength) {
-            data[a].push(" ");
-        }
-    }
+    data.map(i => {
+        if (i.length > dataXlength) dataXlength = i.length;
+    });
+    data.map(i => {
+        while (i.length < dataXlength) { i.push(" "); }
+    });
 }
 
-function getPosition() {
+function getStartPosition() {
     for (let i = 0; i < data.length; i++) {
         for (let j = 0; j < data[i].length; j++) {
             if (data[i][j] == ".") {
